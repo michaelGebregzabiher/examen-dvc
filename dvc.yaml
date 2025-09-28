@@ -37,13 +37,26 @@ stages:
     outs:
     - models/model.pkl
   evaluate_model:
-    cmd: python src/models/evaluate_model.py
+    cmd: python src/models/eval_model.py
     deps:
     - data/processed_data/X_test_scaled.csv
     - data/processed_data/y_test.csv
     - models/model.pkl
-    - src/models/evaluate_model.py
+    - src/models/eval_model.py
     outs:
     - data/predictions.csv
     metrics:
     - metrics/scores.json
+
+# ===============After defining the stages, you can run the entire pipeline with one command :=================
+
+# bash
+# dvc repro
+
+#================ Version and Push Everything:===================
+
+# bash
+# git add .
+# git commit -m "Build complete ML pipeline with DVC"
+# git push -u origin main
+# dvc push -r origin
