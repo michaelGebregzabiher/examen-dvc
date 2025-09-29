@@ -60,7 +60,7 @@ A .pkl file in the _models_ tab of DagsHub with the trained model.
 A .json file in the metrics folder with the evaluation metrics of the model.
 A dvc.yaml file with the DVC pipeline steps, along with a dvc.lock file containing the backup information.
 The _data_ tab should display the data properly.
-The DagsHub pipeline schema should resemble:\
+The DagsHub pipeline schema should resemble:
 
 ======================solution===================\
 Step 0: Fork and clone the Github project\
@@ -75,19 +75,19 @@ git remote add origin https://dagshub.com/<your-dagshub-username>/<your-repo-nam
 #dvc remote add origin s3://dvc
 dvc remote modify origin endpointurl https://dagshub.com/<your-dagshub-username>/<your-repo-name>.s3
 dvc remote modify origin --local access_key_id <your-token>
-dvc remote modify origin --local secret_access_key <your-token>\
+dvc remote modify origin --local secret_access_key <your-token>
 
  Step 3: Build the DVC Pipeline\
  Use dvc stage add commands to create a pipeline in dvc.yaml that defines the sequence and dependencies of your workflow . Run these commands from your project's root directory. note the codes in the file "make_pipeline_yamlfile"\
 #After defining the stages, you can run the entire pipeline with one command 
-dvc repro\
+dvc repro
 
 Step 4: Finalize and Submit\
 Versioning and pushing everything
 git add .
 git commit -m "Build complete ML pipeline with DVC"
 git push -u origin main
-dvc push -r origin\
+dvc push -r origin
 
 #Share your DagsHub Repository:
 
