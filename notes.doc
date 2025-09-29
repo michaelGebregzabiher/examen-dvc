@@ -1,0 +1,161 @@
+#https://github.com/ShawhinT/YouTube-Blog/blob/main/full-stack-data-science/ml-engineering/requirements.txt
+#MLops project: Deploying Semantic Search of YT videos. Here we will…
+•	Create Search API with Fast Api
+•	Create Docker image for Api from a Fast Api
+•	Push image to Docker Hub
+•	Deploy container on AWS  ECS
+
+Activating your Virtual enviroment:
+1.	Go the folder:   
+       cd "C:\Users\SD 40\MLopsproject"
+2.	Activate the Virtual environment :  
+      .myvenv\Scripts\Activate
+3.	If you get the “execution policy” error, run :         
+ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+4.	Create a file: echo $null > c:\Users\SD 40\MLopsproject\.myvenv\app\utils.py , but if you are already in your app folder then echo $null > utils.py
+#If you want to stay in PowerShell and keep your .venv active: open the terminal yourself and run:
+	python main.py
+#The workflow is always: create venv → activate → install dependencies → run scripts.
+Eg. When it is written in one line and same shell session: (.\.myvenv\Scripts\Activate; pip install -r requirements.txt; python main.py)
+�� What happens here
+1.	.\.myvenv\Scripts\Activate → activates your virtual environment.
+2.	pip install -r requirements.txt → installs all dependencies listed.
+3.	python main.py → runs your script using the environment you just activated.
+#Run fast api app: uvicorn main:app –reload (in powershell)
+############## MLops_project Alexgrigorev###############################
+Note : pip used to install packages globally i.e they  will be then used in all projects
+	UV will be more specific (for isolating from the rest of the apps)
+GitHub Codespaces: A Codespace is already a cloud-based dev environment hosted by GitHub.
+Steps to carry out while using Github codespace:
+I.	create new repository 
+II.	create Codespace in main 
+III.	use -visual studio from Desktop instead of the webbaased(optional)
+IV.	then go ahead wth the below common workflows to add/commit and push your commits
+#Alexygrigorev: https://github.com/DataTalksClub/machine-learning-zoomcamp
+#a ready-to-use 5-line script you can copy-paste whenever you want to sync your work with GitHub (from local VS Code or Codespaces).
+git pull origin main      # Get latest changes first: 
+	What it does: Fetches and merges any new changes from the remote repo (GitHub) into your local repo.
+	Why: This makes sure you’re up to date and avoids conflicts before you push your own changes.
+
+git add .          # Stage all changes
+	•What it does: Stages all modified and new files in your project so they’re included in the next commit.
+	Why: Git doesn’t automatically include file changes — you have to explicitly stage them.
+•	. means “all files in this directory and subdirectories.”
+
+git commit -m "update"    # Commit with a message
+	What it does: Creates a snapshot of your staged changes, with a message explaining what you did.
+	Why: Commits are your project’s history — they let you roll back, track progress, and collaborate.
+•	Example: Instead of "update", you might write "added login API" or "fixed bug in training loop".
+
+git push /git push -u origin main(if it is first push in a new repo, you might need to set a branch)# Push to GitHub
+	What it does: Uploads your commits to GitHub, into the branch main.
+	Why: This shares your work with the remote repo, so you (and your teammates, or your Codespace) can access it.
+
+wget is a command-line tool to download files from the internet (mostly used in Linux/macOS).
+	In Windows : Powershel has builtin funcrtion : wget https://example.com/file.txt -OutFile file.txt
+
+#If you want to close your cloud environment (e.g., GitHub Codespaces) and continue tomorrow, here’s how to approach it:
+1️⃣ Closing for today
+•	You can just close VS Code or disconnect from the Codespace.
+•	The Codespace itself keeps running in the cloud for a limited time (GitHub usually keeps it alive for a few hours, or longer depending on your plan).
+•	All files, your virtual environment, and installed packages remain intact.
+________________________________________
+2️⃣ Reopening tomorrow
+•	Open VS Code → Remote Explorer → Codespaces → Connect to your Codespace.
+•	Your Codespace resumes with all your previous work, including the venv.
+________________________________________
+3️⃣ Jupyter notebooks
+•	You will need to restart the Jupyter server because the notebook server doesn’t persist when you close VS Code.
+•	Steps:
+# Activate your venv if needed
+source myvenv/bin/activate  # Linux/Mac
+.\myvenv\Scripts\activate   # Windows PowerShell
+
+# Start Jupyter
+jupyter notebook
+•	Then open your .ipynb files in VS Code or the browser.
+________________________________________
+So essentially, your environment and files persist, but the Jupyter server does not—you just restart it when reconnecting.
+#In your terminal (inside VS Code or Codespaces), you don’t have to type the same three commands every time.
+Create a Git alias (permanent shortcut)
+You can define your own shortcut in Git, e.g. git save:
+git config --global alias.save '!git add . && git commit -m "update" && git push'
+Then next time you just run:
+git save
+and it will do all three in one go .
+#How to get the port of Jupyter notebook forwarded to you from the cloud Github codespace:
+Simply run jupyter note book on your terminal (write only jupyter note book) - - then you will get a link.
+#Jupyter notebook from Vscode: Use Control-C to stop this server and shut down all kernels. (twice to skip confirmation).
+
+MLops @Data Scientest
+Connect to Data Scientest VM using command prompt from my local machine: 
+ssh -i "path/to/your/key/data_enginering_machine.pem" ubuntu@X.X.X.X
+Then connect from Vs code. Note change the public ip address(edit the config file) every time you reconnect to your VM from the learning platform.
+Basic to use Visual studio code and Github: 
+Github extension is needed with in Visual studio code so that Visual studio code can communicate with your remote github account(d.h your remote repositories).
+Steps:
+•	Clone your repository (either using https or using personal token method)
+•	Make changes (for example creating folders , files , populating the files…….)
+•	Git add, git commit , git push
+•	Visual studio requests you at this point to be granted access to your github account sothat I acts on behlf of you i.e when you try to push changes to the remote or clone repository to local……….
+#Issue by connecting to the DataScientest Virtual machine from your Vscode (remote explorer): you come the next day , Visual studio is attempting to connect on the Host ip address (Vm ipaddress) , but sometimes it fails the connection to the vm from the platform needs to be refreshed. At this point you need to click on “more actions “ on the popup box in Vs code and then configuration file edit(replace the old ip address with the new one).
+Try to close the remote and then open the remote explorer again ………..
+Github actions: give grant to Vs code to act on behalf of you to connect to your remote Github account(repos).
+(in my case, since I am working from the remote VM , I gona save and push codes from the vm to the Github repos)
+Add aliases for quick switching
+•	Edit your ~/.bashrc:
+nano ~/.bashrc
+•	Add at the bottom:
+Examples:
+alias fastapi_env='source ~/virtual_env/fastapi_env/bin/activate'
+alias dataeng_env='source ~/virtual_env/dataeng_env/bin/activate'
+then Important while using aliases: Reload your bashrc so aliases become active immediately:
+source ~/.bashrc
+Now you can call each for eg: fastapi_env
+
+Move main.py to the parent directory
+1.	Navigate to your virtual environment directory:
+bash
+cd /path/to/fastapi_env
+2.	Move main.py to the parent directory:
+bash
+mv main.py ..
+3.	Navigate to the parent directory:
+bash
+cd ..
+4.	Verify the file was moved:
+bash
+ls -la
+Recommended project structure:
+your_project_folder/          ← This is where your main.py should be
+├── fastapi_env/             ← Virtual environment (keep this separate)
+│   ├── bin/
+│   ├── lib/
+│   └── pyvenv.cfg
+├── main.py                  ← Your FastAPI application code
+└── requirements.txt         ← Optional: list of dependencies
+
+
+Very important: 
+Always make sure that you are in the venv. Check using which pip or which python3 . Ans should be like “/home/ubuntu/virtual_envts/fastap_proj/fastapi_env/bin/pip” not user/bin/… which is the system path
+#but most  importantly remove and create venvs since Sometimes virtual environments can inherit system restrictions. Try creating a new one:
+
+Note: i am woriking in a virtual environment of the DataSeintest vm. 😊 remote with in remote , No virtualization with in a remote machine. 
+
+# curl -X GET -i http://127.0.0.1:8000/typed?argument1=80
+
+
+
+
+Two ways to pass data to our api: We pass data in two different ways when we request our api so that we get a response based on the data passed to the api i.e after the function under the api is processed.
+•	Request string (argument of the function will be dictionarie like)
+•	Request body(argument of the function will be a vordefined class)
+#Shell management
+•	one shell for the package management, 
+•	second shell to run the uvicorn server then 
+•	third shell to make requests to the fast api .
+#To run uvicorn server(process your main.py file in the server) be first on your project i.e on the folder(path) before your venv and main.py file.
+
+#Track dependencies with requirements.txt:
+	pip freeze > requirements.txt
+later to create for another similar project : pip install -r requirements.txt
