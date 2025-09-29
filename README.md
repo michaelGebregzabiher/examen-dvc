@@ -1,5 +1,5 @@
 # DVC and Dagshub Exam
-==========Excercise==========
+==========Excercise==========\
 This evaluation consists of four parts. We will work with a dataset containing information about mineral processing, specifically focusing on the flotation process used to concentrate silica from ore. The dataset includes various operational parameters and their impact on silica concentration, which is the target variable. The dataset you will download contains the following information:
 
 ave_flot_air_flow: Average air flow rate in the flotation process.
@@ -60,5 +60,45 @@ A .pkl file in the _models_ tab of DagsHub with the trained model.
 A .json file in the metrics folder with the evaluation metrics of the model.
 A dvc.yaml file with the DVC pipeline steps, along with a dvc.lock file containing the backup information.
 The _data_ tab should display the data properly.
-The DagsHub pipeline schema should resemble:
-======================)))===================
+The DagsHub pipeline schema should resemble:\
+
+======================solution===================\
+Step 0: Fork and clone the Github project\
+    Note to create your parent folder and then clone it there then cd to the        project dirand create venv.
+Step 1: Create the 5 Project Scripts\
+Step 2: Connect to DagsHub and Configure DVC\
+#install DVC\
+#initialize dvc (dvc init) sothat you work with dvc\
+#add the DagsHub repository as a remote origin.\
+git remote add origin https://dagshub.com/<your-dagshub-username>/<your-repo-name>.git\
+#Configure DagsHub as your DVC remote storage. DagsHub provides ready-to-use commands for this in your repository's settings under the "Remote" button 
+#dvc remote add origin s3://dvc
+dvc remote modify origin endpointurl https://dagshub.com/<your-dagshub-username>/<your-repo-name>.s3
+dvc remote modify origin --local access_key_id <your-token>
+dvc remote modify origin --local secret_access_key <your-token>\
+
+ Step 3: Build the DVC Pipeline\
+ Use dvc stage add commands to create a pipeline in dvc.yaml that defines the sequence and dependencies of your workflow . Run these commands from your project's root directory. note the codes in the file "make_pipeline_yamlfile"\
+#After defining the stages, you can run the entire pipeline with one command 
+dvc repro\
+
+Step 4: Finalize and Submit\
+Versioning and pushing everything
+git add .
+git commit -m "Build complete ML pipeline with DVC"
+git push -u origin main
+dvc push -r origin\
+
+#Share your DagsHub Repository:
+
+On your DagsHub repository page, go to settings and add licence.pedago as a collaborator with read-only access.
+
+Create the Submission File:
+
+Create a file named submission.md with the following content:
+
+markdown
+- Name: Your Last Name
+- First Name: Your First Name
+- Email: your.email@domain.com
+- DagsHub Repository URL: https://dagshub.com/your-username/your-repo-name
