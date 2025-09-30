@@ -159,3 +159,8 @@ Two ways to pass data to our api: We pass data in two different ways when we req
 #Track dependencies with requirements.txt:
 	pip freeze > requirements.txt
 later to create for another similar project : pip install -r requirements.txt
+
+# Airflow: 
+important runs when make changes to your DAG files: 
+	docker-compose restart
+	docker container ls
