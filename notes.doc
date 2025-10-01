@@ -164,3 +164,35 @@ later to create for another similar project : pip install -r requirements.txt
 important runs when make changes to your DAG files: 
 	docker-compose restart
 	docker container ls
+
+#===================Airflow, DAG, Task, and Functions:=========================
+A DAG is the overall workflow — like a container or pipeline definition in Airflow. It tells Airflow:
+	What the workflow is called (dag_id='too_long_dag')
+	When to run it (every 10 seconds)
+	When it starts
+	Whether to catch up on missed runs
+	Any default arguments
+A task is a single unit of work inside the DAG. Tasks are the actual steps Airflow executes. #i.e Airflow the excutor
+	eg. my_task = PythonOperator(
+    task_id='sleep_20_seconds',
+    python_callable=sleep_20_seconds
+)
+This task runs the function:
+	eg:
+	def sleep_20_seconds():
+	    time.sleep(20)
+===================================\\\\\\\\\\\\\\\\\\\\============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
